@@ -16,11 +16,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameEndSound = document.getElementById('game-end-sound');
     let moveInterval;
     let wordIndex = 0;
+    let score = 0;
+    let hits = 0;
+    let misses = 0;
+    let shots = 0;
+    let isGameRunning = false;
+    const scoreEl = document.getElementById('score-value');
+    const hitsEl = document.getElementById('hits-value');
+    const missesEl = document.getElementById('misses-value');
+    const shotsEl = document.getElementById('shots-value');
     const words1 = ['Hackathons', 'Workshops', 'Gaming', 'Cultural', 'Proshows', 'Food Arena', 'Treasure Hunt', 'Robotics'];
     const words2 = ['Tech Arena', 'Gaming Arena', 'Cultural Arena', 'Night Shows', 'Workshops', 'Startup Expo', 'Creator Zone'];
     const defaultBirdImage = 'skills.nes/flyduck.gif';
     const shotBirdImage = 'skills.nes/shotduck.png';
     const deadBirdImage = 'skills.nes/deadduck.gif';
+
+    function updateHud() {
+        if (scoreEl) scoreEl.textContent = score;
+        if (hitsEl) hitsEl.textContent = hits;
+        if (missesEl) missesEl.textContent = misses;
+        if (shotsEl) shotsEl.textContent = shots;
+    }
+
+    function resetHud() {
+        score = 0;
+        hits = 0;
+        misses = 0;
+        shots = 0;
+        updateHud();
+    }
+
+    function registerShot({ hit }) {
+        shots += 1;
+        if (hit) {
+            hits += 1;
+            score += 100;
+        } else {
+            misses += 1;
+            score = Math.max(0, score - 25);
+        }
+        updateHud();
+    }
 
     function getRandomYPosition() {
         const bgRect = duckhuntBg.getBoundingClientRect();
@@ -32,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startBirdMovement() {
+        isGameRunning = true;
         flySound.play();
 
         const gameContainerRect = gameContainer.getBoundingClientRect();
@@ -52,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentX = parseFloat(bird.style.left) || 0;
             bird.style.left = `${currentX + 5}px`;
 
-
             if (parseFloat(bird.style.left) > maxX) {
+                registerShot({ hit: false });
                 bird.style.left = `-${birdRect.width}px`;
                 bird.style.top = `${Math.random() * maxY}px`;
             }
@@ -62,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function resetBird() {
         clearInterval(moveInterval);
+        isGameRunning = false;
         bird.classList.add('hidden');
         flySound.pause();
         flySound.currentTime = 0;
@@ -83,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
             resetBird();
             duckhuntBg.classList.add('hidden');
             gameEndBg.classList.remove('hidden');
+            startButton.textContent = 'Restart';
+            startButton.classList.remove('hidden');
+            skipButton.classList.add('hidden');
+            isGameRunning = false;
             gameEndSound.play();
         }
     }
@@ -107,8 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resetBird();
         duckhuntBg.classList.add('hidden');
-        startButton.classList.add('hidden');
+        startButton.textContent = 'Restart';
+        startButton.classList.remove('hidden');
         gameEndBg.classList.remove('hidden');
+        skipButton.classList.add('hidden');
+        isGameRunning = false;
         gameEndSound.play();
     }
 
@@ -141,17 +186,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    bird.addEventListener('click', () => {
+    function resetGame() {
+        resetBird();
+        wordIndex = 0;
+        wordBox.innerHTML = '';
+        wordBox2.innerHTML = '';
+        duckhuntBg.classList.remove('hidden');
+        gameEndBg.classList.add('hidden');
+        startButton.textContent = 'Start Game';
+        skipButton.classList.remove('hidden');
+        resetHud();
+    }
+
+    bird.addEventListener('click', (e) => {
+        if (!isGameRunning) return;
+        e.stopPropagation();
+        registerShot({ hit: true });
         birdShot();
     });
 
     duckhuntBg.addEventListener('click', () => {
+        if (!isGameRunning) return;
+        registerShot({ hit: false });
         clickSound.play();
     });
 
     startButton.addEventListener('click', () => {
         loopSound.pause();
         loopSound.currentTime = 0;
+        resetGame();
         startButton.classList.add('hidden');
         startBirdMovement();
     });
@@ -172,4 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     observer.observe(gameContainer);
+
+    // initialize HUD on load
+    updateHud();
 });

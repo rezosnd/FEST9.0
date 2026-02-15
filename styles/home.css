@@ -126,3 +126,24 @@
 .bird { cursor: pointer; transition: transform 0.1s ease-in-out; }
 .fall { transition: transform 2s ease-in; }
 .word-container { display: inline-block; animation: slide-in 1s ease-in-out; }
+
+.duck-hud {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 5;
+}
+
+.duck-hud .hud-box {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: 3px solid #fff;
+  padding: 6px 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+@media (min-width: 768px) {
+  .duck-hud .hud-box { font-size: 12px; padding: 8px 12px; }
+}

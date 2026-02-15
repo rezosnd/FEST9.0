@@ -256,6 +256,11 @@ export default function HomePage() {
                 </div>
                 <div className="w-full max-w-screen-lg mx-auto relative border-4 border-white flex flex-col md:flex-row">
                   <div className="game-container relative w-full" style={{ backgroundColor: '#63adff' }}>
+                    <div className="duck-hud">
+                      <div className="hud-box headingfont">
+                        SCORE <span id="score-value">0</span> | HITS <span id="hits-value">0</span> | MISSES <span id="misses-value">0</span> | SHOTS <span id="shots-value">0</span>
+                      </div>
+                    </div>
                     <img src="/skills.nes/duckhuntbg.png" className="duckhunt-bg h-full w-full object-cover" alt="Duck Hunt" />
                     <img src="/skills.nes/centerimage.gif" className="gameend-bg hidden h-full w-full object-cover" alt="Game End" />
                     <img src="/skills.nes/flyduck.gif" className="bird hidden absolute w-12 h-12 md:w-20 md:h-20 nes-pointer" alt="Bird" />
