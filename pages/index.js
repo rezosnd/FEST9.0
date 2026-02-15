@@ -265,7 +265,6 @@ export default function HomePage() {
                     <img src="/skills.nes/centerimage.gif" className="gameend-bg hidden h-full w-full object-cover" alt="Game End" />
                     <img src="/skills.nes/flyduck.gif" className="bird hidden absolute w-12 h-12 md:w-20 md:h-20 nes-pointer" alt="Bird" />
                     <button id="start-button" className="bulbula medium buton headingfont nes-pointer">Start Game</button>
-                    <button id="skip-button" className="bulbula buton headingfont skip-button nes-pointer">Skip Cutscene</button>
                   </div>
                 </div>
               </div>

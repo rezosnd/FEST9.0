@@ -9,6 +9,11 @@ const nextConfig = {
       { protocol: 'https', hostname: 'media.githubusercontent.com' },
     ],
   },
+  webpack: (config) => {
+    // Disable persistent webpack file cache to avoid corrupt pack files causing OOM
+    config.cache = false;
+    return config;
+  },
 };
 
 module.exports = nextConfig;

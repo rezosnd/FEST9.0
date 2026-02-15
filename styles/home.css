@@ -120,6 +120,7 @@
 }
 
 .game-container { position: relative; }
+.game-container { min-height: 260px; }
 
 .review-card { backdrop-filter: blur(5px); }
 
@@ -146,4 +147,116 @@
 
 @media (min-width: 768px) {
   .duck-hud .hud-box { font-size: 12px; padding: 8px 12px; }
+}
+
+.duck-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  backdrop-filter: blur(2px);
+}
+
+.duck-modal-backdrop.hidden { display: none; }
+
+.duck-modal-card {
+  background: #101010;
+  border: 4px solid #ffffff;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.25), 0 0 12px rgba(0, 255, 255, 0.2);
+  padding: 18px;
+  width: min(90%, 360px);
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.duck-modal-title {
+  font-size: 20px;
+  color: #ffef12;
+  text-shadow: 0 0 8px rgba(255, 239, 18, 0.6);
+  margin-bottom: 8px;
+}
+
+.duck-modal-message {
+  font-size: 14px;
+  color: #c7fffb;
+  margin-bottom: 12px;
+}
+
+.duck-modal-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.duck-modal-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1c1c1c;
+  border: 3px solid #3cfffd;
+  padding: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.duck-modal-actions button {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #ff3300;
+  color: #ffef12;
+  border: 3px solid #ffef12;
+  box-shadow: 0 0 12px rgba(255, 51, 0, 0.4);
+}
+
+.duck-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.duck-share-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.duck-share-grid button {
+  font-size: 12px;
+  padding: 8px;
+  background: #0aa2ff;
+  color: #ffffff;
+  border: 3px solid #3cfffd;
+  box-shadow: 0 0 10px rgba(10, 162, 255, 0.35);
+}
+
+.duck-modal-footnote {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #c7fffb;
+  letter-spacing: 0.5px;
+}
+
+.duck-modal-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #1c1c1c;
+  border: 2px solid #fff;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
 }
