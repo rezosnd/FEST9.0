@@ -126,7 +126,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Layout title="TANV" variant="dark">
+  <Layout title="KIITFEST 9.0" variant="dark">
       <div className="home-shell">
         <div className="section text-white min-h-screen flex flex-col items-center justify-center z-20 home-section">
           <div ref={imageRef} className="img bogusimage h-4/12 w-10/12 md:w-8/12 lg:w-5/12 top-20 z-10 img-tilt" id="image" />
