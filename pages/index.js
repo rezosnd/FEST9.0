@@ -129,7 +129,7 @@ export default function HomePage() {
   <Layout title="KIITFEST 9.0" variant="dark">
       <div className="home-shell">
         <div className="section text-white min-h-screen flex flex-col items-center justify-center z-20 home-section">
-          <div ref={imageRef} className="img bogusimage h-4/12 w-10/12 md:w-8/12 lg:w-5/12 top-20 z-10 img-tilt" id="image" />
+          <div ref={imageRef} className="img hero-image h-4/12 w-10/12 md:w-8/12 lg:w-5/12 top-20 z-10 img-tilt" id="image" />
           <div className="mt-3 text-xs md:text-sm text-yellow-300 headingfont">{rotatingTexts[tickerIndex]}</div>
           <div className="flex flex-col items-center justify-center my-4 gap-1">
             <img
@@ -140,7 +140,7 @@ export default function HomePage() {
             />
             <img
               ref={astronautRef}
-              id="astronautImage"
+              id="kiitmanImage"
               src="/indexbg/kiitman.png"
               alt="Astronaut"
               className="img astronaut w-3/6 min-[430px]:w-5/12 sm:w-4/12 md:w-3/12 xl:w-2/12 z-50"
@@ -266,7 +266,7 @@ export default function HomePage() {
                     <img src="/skills.nes/flyduck.gif" className="bird hidden absolute w-12 h-12 md:w-20 md:h-20 nes-pointer" alt="Bird" />
                     <button id="start-button" className="bulbula medium buton headingfont nes-pointer">Start Game</button>
                   </div>
-                </div>
+                </div> 
               </div>
 
               <div className="col-span-1 order-3 md:order-3 mx-2 my-2 md:my-0" id="arenas">
