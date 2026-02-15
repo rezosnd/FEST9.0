@@ -1,0 +1,128 @@
+.home-shell {
+  background-image: url('/indexbg/bg0.png');
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: 30% auto;
+  background-attachment: scroll;
+  min-height: 100%;
+  position: relative;
+}
+
+.home-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/indexbg/bg0.png');
+  background-repeat: repeat;
+  background-position: 40% 40%;
+  background-size: 30% auto;
+  opacity: 0.28;
+  transform: scaleX(-1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-shell .section {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 992px) {
+  .home-shell { background-size: 40% auto; }
+}
+
+@media (max-width: 768px) {
+  .home-shell { background-size: 90% auto; }
+  .home-shell::after {
+    background-size: 90% auto;
+    background-position: 45% 45%;
+  }
+}
+
+.home-section { position: relative; }
+
+.message { margin: 6px 0; }
+.bubble { max-width: 85%; }
+
+.astronaut { display: block; width: 100%; height: auto; z-index: 10; }
+
+.bottom-right-image { position: absolute; bottom: 0; right: 0; height: auto; margin: 0; }
+.left-center-image { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 20%; height: auto; }
+.left-image, .right-image { position: absolute; transform: translateY(-50%); width: 15%; height: auto; margin: 0; }
+.left-image { left: 0; top: 25%; }
+.right-image { right: 0; top: 60%; }
+.top-image { position: absolute; top: -24px; left: 50%; transform: translateX(-50%); width: 135%; height: auto; z-index: 0; }
+
+.img-tilt { transition: transform 0.1s; }
+
+.bogusimage {
+  width: 85vw;
+  max-width: 600px;
+  height: 70vw;
+  max-height: 500px;
+  min-height: 240px;
+  margin: 0 auto;
+  background-image: url('/logo/bgdck.gif');
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* Lift fest hero art so it’s visible above astronaut overlap */
+.fest-hero-img { margin-top: -513px; }
+
+@media (max-width: 768px) {
+  .fest-hero-img { margin-top: -426px; }
+}
+
+#astronautImage {
+  width: 32vw;
+  max-width: 150px;
+  min-width: 110px;
+}
+
+@media (max-width: 768px) {
+  .bogusimage { width: 90vw; height: 70vw; max-height: 420px; }
+  .top-image { width: 150%; top: -18px; }
+  .left-image { width: 25%; top: 25%; }
+  .right-image { width: 30%; top: 60%; }
+  .left-center-image { width: 30%; top: 50%; }
+  #astronautImage { width: 42vw; max-width: 130px; min-width: 90px; }
+}
+
+.message img { image-rendering: pixelated; }
+
+.word-box, .word-box-2 { display: flex; gap: 0.5rem; }
+
+@media (max-width: 767px) {
+  .word-box, .word-box-2 { margin-top: 1rem; }
+}
+
+#start-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  padding: 5px 5px;
+  font-size: 15px;
+}
+
+#skip-button {
+  position: absolute;
+  top: 90%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  font-size: 8px;
+}
+
+.game-container { position: relative; }
+
+.review-card { backdrop-filter: blur(5px); }
+
+.bird { cursor: pointer; transition: transform 0.1s ease-in-out; }
+.fall { transition: transform 2s ease-in; }
+.word-container { display: inline-block; animation: slide-in 1s ease-in-out; }
